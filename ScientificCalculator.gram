@@ -1,0 +1,23 @@
+#JSGF V1.0;
+
+grammar ScientificCalculator;
+
+public <command> = /6/ <defineCommand> | /7/ <retrieveCommand> | /5/ <logCommand> | /7/ <storeCommand> | /6/ <rootCommand> | /6/ <powerCommand> | /12/ <operatorCommand>;
+
+<defineCommand> = DEFINE VARIABLE <variable>;
+<retrieveCommand> = RETRIEVE (/3/ (<variable> | <constant>) | /1/ (LAST RESULT));
+<logCommand> = LOG <value>[ SQUARE | CUBE];
+<powerCommand> = <value> (SQUARE | CUBE);
+<storeCommand> = STORE (/3/ <variable> <value> | /1/ (LAST RESULT));
+<rootCommand> = (/3/ SQUARE | /2/ CUBIC) ROOT OF <value>;
+<operatorCommand> = <value> <operator> <value> [<operator> <value>];
+
+<value> = /2/ <number> | /3/ <variable> | /1/ <constant>;
+<constant> = /8/ PI | /3/ EU;
+<operator> = PLUS | MINUS | MULTIPLY | DIVIDE | POWER;
+<variable> = /3/ A | /2/ B | /1/ C | /5/ X | /3/ Y | /2/ Z;
+<number> = <digit>+ (<digit>*|0) (<digit>*|0) (<digit>*|0);
+<digit> = /6/ <digit1> | /2/ <digit2> | /4/ <digit3>;
+<digit1> = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+<digit2> = 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19;
+<digit3> = 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 | 1000;
